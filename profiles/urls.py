@@ -1,7 +1,9 @@
 from django.urls import path
+from rest_framework.routers import DefaultRouter
 from profiles import views
 
-urlpatterns = [
-    path('profiles/', views.ParentProfileList.as_view()),
-    path('profiles/<int:pk>/', views.ParentProfileDetail.as_view()),
-]
+router = DefaultRouter()
+router.register('profiles', views.ParentProfileViewSet)
+router.urls
+
+urlpatterns = router.urls
