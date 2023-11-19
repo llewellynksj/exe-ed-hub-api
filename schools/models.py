@@ -32,3 +32,4 @@ class School(models.Model):
   
   def __str__(self):
     return f"{self.school_name} - {self.school_level}"
+
