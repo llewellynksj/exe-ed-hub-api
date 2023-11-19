@@ -1,11 +1,13 @@
 from django.urls import path
-from rest_framework.routers import DefaultRouter
+from rest_framework_nested import routers
 from profiles import views
 
 # Router code from 'Routers' chapter of 'The ultimate Django Part 2' course
 # by Code with Mosh: https://codewithmosh.com/p/the-ultimate-django-part2
-router = DefaultRouter()
+router = routers.DefaultRouter()
 router.register('profiles', views.ParentProfileViewSet)
-router.urls
 
-urlpatterns = router.urls
+profiles_router = routers.NestedDefaultRouter(router, 'profiles', lookup='profile')
+profiles_router.register('followers', views.FollowerViewSet, basename='profile-followers')
+
+urlpatterns = router.urls + profiles_router.urls
