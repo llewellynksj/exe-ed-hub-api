@@ -1,7 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import status
-from .models import School
-from .serializers import SchoolSerializer
+from .models import School, Review
+from .serializers import SchoolSerializer, ReviewSerializer
 
 
 class SchoolViewSet(ModelViewSet):
@@ -10,3 +9,11 @@ class SchoolViewSet(ModelViewSet):
   """
   queryset = School.objects.all()
   serializer_class = SchoolSerializer
+
+
+class ReviewViewSet(ModelViewSet):
+  """
+  one view set that combines all operations for viewing list and detail
+  """
+  queryset = Review.objects.all()
+  serializer_class = ReviewSerializer

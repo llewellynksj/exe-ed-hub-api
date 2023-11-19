@@ -52,7 +52,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'profiles',
     'schools',
-    'reviews',
 ]
 
 MIDDLEWARE = [
