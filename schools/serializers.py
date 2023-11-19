@@ -26,8 +26,12 @@ class ReviewSerializer(serializers.ModelSerializer):
   """
   Serializer to return JSON object of Review Model
   """
-  # username = serializers.ReadOnlyField(source='username.username')
-  # school = serializers.ReadOnlyField(source='school.school_name')
+  overall_rating = serializers.SerializerMethodField(method_name='calculate_overall_rating')
+
+  def calculate_overall_rating(self, review: Review):
+    """"""
+    total_score = review.teaching_quality + review.admin_service + review.child_happiness + review.atmosphere
+    return total_score / 20 * 100
 
   class Meta:
     model = Review
@@ -42,13 +46,14 @@ class ReviewSerializer(serializers.ModelSerializer):
       'admin_service',
       'child_happiness',
       'atmosphere',
+      'overall_rating',
     ]
 
   def create(self, validated_data):
     """
-    overide create method for creating a review
-    reads school id from context
-    return review object
+    Overides create method for creating a Review
+    Reads the School id from context
+    Returns Review object
     """
     school_id = self.context['school_id']
     return Review.objects.create(school_id=school_id, **validated_data)
