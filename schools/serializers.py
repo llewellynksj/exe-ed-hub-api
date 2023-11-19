@@ -16,7 +16,7 @@ class SchoolSerializer(serializers.ModelSerializer):
       'school_name',
       'school_level',
       'street_address',
-      'city',
+      'locality_name',
       'postcode',
       'ofsted',
     ]

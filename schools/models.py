@@ -25,7 +25,7 @@ class School(models.Model):
   school_name = models.CharField(max_length=255)
   school_level = models.CharField(choices=SCHOOL_LEVEL, max_length=255)
   street_address = models.CharField(max_length=255)
-  city = models.CharField(max_length=100)
+  locality_name = models.CharField(max_length=100)
   postcode = models.CharField(max_length=10)
   ofsted = models.CharField(choices=OFSTED_RATING, max_length=50)
 

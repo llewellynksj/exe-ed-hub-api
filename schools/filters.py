@@ -6,6 +6,6 @@ class SchoolFilter(FilterSet):
     model = School
     fields = {
       'school_name': ['icontains'],
-      'city': ['istartswith'],
+      'locality_name': ['istartswith'],
       'school_level': ['exact'],
     }
