@@ -1,6 +1,7 @@
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from schools.models import School
 
 
 class ParentProfile(models.Model):
@@ -53,3 +54,21 @@ class Follower(models.Model):
 
   def __str__(self):
       return f'{self.username} is following {self.followed}'
+
+
+class Dependent(models.Model):
+  """
+  Dependent model records details of any children relating to Parent Profile
+  """
+  created_on = models.DateTimeField(auto_now_add=True)
+  updated_on = models.DateTimeField(auto_now=True)
+  parent = models.ForeignKey(ParentProfile, on_delete=models.CASCADE)
+  name = models.CharField(max_length=100)
+  age = models.SmallIntegerField()
+  school = models.ForeignKey(School, on_delete=models.PROTECT)
+
+  class Meta:
+    ordering = ['-created_on']
+  
+  def __str__(self):
+    return f"{self.name} is a child of {self.parent.username}"
