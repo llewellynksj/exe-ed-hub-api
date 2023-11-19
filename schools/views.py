@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from .models import School, Review
 from .serializers import SchoolSerializer, ReviewSerializer
 from .filters import SchoolFilter, ReviewFilter
@@ -12,9 +12,10 @@ class SchoolViewSet(ModelViewSet):
   """
   queryset = School.objects.all()
   serializer_class = SchoolSerializer
-  filter_backends = [DjangoFilterBackend, SearchFilter]
+  filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
   filterset_class = SchoolFilter
   search_fields = ['school_name', 'locality_name']
+  ordering_fields = ['locality_name', 'school_name', 'school_level', 'ofsted']
 
 
 class ReviewViewSet(ModelViewSet):

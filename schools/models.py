@@ -13,7 +13,7 @@ class School(models.Model):
   street_address = models.CharField(max_length=255)
   locality_name = models.CharField(max_length=255, choices=LOCALITY_NAME)
   postcode = models.CharField(max_length=10)
-  ofsted = models.CharField(choices=OFSTED_RATING, max_length=50)
+  ofsted = models.IntegerField(choices=OFSTED_RATING)
   overall_rating = models.CharField(default="This school does not yet have any reviews", max_length=255)
 
   class Meta:
