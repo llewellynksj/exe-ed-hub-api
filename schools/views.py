@@ -15,5 +15,19 @@ class ReviewViewSet(ModelViewSet):
   """
   one view set that combines all operations for viewing list and detail
   """
-  queryset = Review.objects.all()
   serializer_class = ReviewSerializer
+
+  def get_queryset(self):
+    """
+    Overide the get queryset method
+    Returns the review objects filtered by the School id
+    """
+    return Review.objects.filter(school_id=self.kwargs['school_pk'])
+
+
+  def get_serializer_context(self):
+    """
+    Provide the context for the serializer
+    Returns the School id
+    """
+    return {'school_id': self.kwargs['school_pk']}

@@ -42,7 +42,7 @@ class Review(models.Model):
   """
   created_on = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
-  username = models.OneToOneField(User, on_delete=models.CASCADE)
+  username = models.CharField(max_length=100)
   school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='reviews')
   title = models.CharField(max_length=255)
   review = models.TextField()
