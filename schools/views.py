@@ -1,18 +1,20 @@
 from rest_framework.viewsets import ModelViewSet
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 from .models import School, Review
 from .serializers import SchoolSerializer, ReviewSerializer
-from .filters import SchoolFilter
+from .filters import SchoolFilter, ReviewFilter
 
 
 class SchoolViewSet(ModelViewSet):
   """
-  
+  Single ViewSet that combines all operations for list and detail views
   """
   queryset = School.objects.all()
   serializer_class = SchoolSerializer
-  filter_backends = [DjangoFilterBackend]
+  filter_backends = [DjangoFilterBackend, SearchFilter]
   filterset_class = SchoolFilter
+  search_fields = ['school_name', 'locality_name']
 
 
 class ReviewViewSet(ModelViewSet):
@@ -20,6 +22,9 @@ class ReviewViewSet(ModelViewSet):
   Single ViewSet that combines all operations for list and detail views
   """
   serializer_class = ReviewSerializer
+  filter_backends = [DjangoFilterBackend, SearchFilter]
+  filterset_class = ReviewFilter
+  search_fields = ['username', 'school', 'title']
 
   def get_queryset(self):
     """

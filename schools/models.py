@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.core.validators import MaxValueValidator, MinValueValidator
-from .choices import SCHOOL_LEVEL, OFSTED_RATING, LOCALITY_NAME
+from .choices import SCHOOL_LEVEL, OFSTED_RATING, LOCALITY_NAME, RATINGS
 
 class School(models.Model):
   """
@@ -34,10 +33,10 @@ class Review(models.Model):
   school = models.ForeignKey(School, on_delete=models.CASCADE, related_name='reviews')
   title = models.CharField(max_length=255)
   review = models.TextField()
-  teaching_quality = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-  admin_service = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-  child_happiness = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
-  atmosphere = models.PositiveSmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+  teaching_quality = models.PositiveSmallIntegerField(choices=RATINGS)
+  admin_service = models.PositiveSmallIntegerField(choices=RATINGS)
+  child_happiness = models.PositiveSmallIntegerField(choices=RATINGS)
+  atmosphere = models.PositiveSmallIntegerField(choices=RATINGS)
 
   class Meta:
     ordering = ['-created_on']

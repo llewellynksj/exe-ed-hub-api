@@ -28,3 +28,16 @@ LOCALITY_NAME = [
   ('Sowton', 'Sowton'),
   ('Countess Wear', 'Countess Wear'),
 ]
+
+FAILING = 1
+NEEDS_WORK = 2
+ADEQUATE = 3
+GOOD = 4
+EXCELLENT = 5
+RATINGS = [
+  (FAILING, 'Failing'),
+  (NEEDS_WORK, 'Needs Work'),
+  (ADEQUATE, 'Adequate'),
+  (GOOD, 'Good'),
+  (EXCELLENT, 'Excellent'),
+]
