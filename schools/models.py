@@ -1,33 +1,21 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
-
+from .choices import SCHOOL_LEVEL, OFSTED_RATING, LOCALITY_NAME
 
 class School(models.Model):
   """
   School Model
   """
-  SCHOOL_LEVEL = [
-    ('Primary', 'Primary'),
-    ('Secondary', 'Secondary'),
-    ('Sixth Form/College', 'Sixth Form/College'),
-  ]
-
-  OFSTED_RATING = [
-    ('Outstanding', 'Outstanding'),
-    ('Good', 'Good'),
-    ('Requires Improvement', 'Requires Improvement'),
-    ('Inadequate', 'Inadequate'),
-  ]
-
   created_on = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
   school_name = models.CharField(max_length=255)
   school_level = models.CharField(choices=SCHOOL_LEVEL, max_length=255)
   street_address = models.CharField(max_length=255)
-  locality_name = models.CharField(max_length=100)
+  locality_name = models.CharField(max_length=255, choices=LOCALITY_NAME)
   postcode = models.CharField(max_length=10)
   ofsted = models.CharField(choices=OFSTED_RATING, max_length=50)
+  overall_rating = models.CharField(default="This school does not yet have any reviews", max_length=255)
 
   class Meta:
     ordering = ['-school_name']

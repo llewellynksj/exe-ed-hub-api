@@ -17,7 +17,7 @@ class SchoolViewSet(ModelViewSet):
 
 class ReviewViewSet(ModelViewSet):
   """
-  one view set that combines all operations for viewing list and detail
+  Single ViewSet that combines all operations for list and detail views
   """
   serializer_class = ReviewSerializer
 

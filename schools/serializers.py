@@ -5,7 +5,7 @@ class SchoolSerializer(serializers.ModelSerializer):
   """
   Serializer to return JSON object of School Model
   """
-  school_name = serializers.ReadOnlyField(source='school.school_name')
+  school_name = serializers.ReadOnlyField(source='school.school_name')   
 
   class Meta:
     model = School
@@ -19,6 +19,7 @@ class SchoolSerializer(serializers.ModelSerializer):
       'locality_name',
       'postcode',
       'ofsted',
+      'overall_rating',
     ]
 
 
@@ -37,20 +38,20 @@ class ReviewSerializer(serializers.ModelSerializer):
     return int(total_score / 20 * 5)
 
   class Meta:
-    model = Review
-    fields = [
-      'id',
-      'created_on',
-      'updated_on',
-      'username',
-      'title',
-      'review',
-      'teaching_quality',
-      'admin_service',
-      'child_happiness',
-      'atmosphere',
-      'overall_rating',
-    ]
+      model = Review
+      fields = [
+        'id',
+        'created_on',
+        'updated_on',
+        'username',
+        'title',
+        'review',
+        'teaching_quality',
+        'admin_service',
+        'child_happiness',
+        'atmosphere',
+        'overall_rating',
+      ]
 
   def create(self, validated_data):
     """
@@ -60,3 +61,5 @@ class ReviewSerializer(serializers.ModelSerializer):
     """
     school_id = self.context['school_id']
     return Review.objects.create(school_id=school_id, **validated_data)
+
+    
