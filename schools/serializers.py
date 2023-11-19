@@ -29,9 +29,12 @@ class ReviewSerializer(serializers.ModelSerializer):
   overall_rating = serializers.SerializerMethodField(method_name='calculate_overall_rating')
 
   def calculate_overall_rating(self, review: Review):
-    """"""
+    """
+    Calculates the overall rating of review based on scores out of 5 for teaching quality, admin service, child happiness, and atmosphere
+    Returns a percentage
+    """
     total_score = review.teaching_quality + review.admin_service + review.child_happiness + review.atmosphere
-    return total_score / 20 * 100
+    return int(total_score / 20 * 5)
 
   class Meta:
     model = Review
