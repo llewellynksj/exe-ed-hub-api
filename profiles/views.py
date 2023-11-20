@@ -12,12 +12,14 @@ class ParentProfileViewSet(ModelViewSet):
   queryset = ParentProfile.objects.all()
   serializer_class = ParentProfileSerializer
   
+  # get_permissions function from DRF documentation:
+  # https://www.django-rest-framework.org/api-guide/viewsets/
   def get_permissions(self):
     """
     Instantiates and returns the list of permissions that this view requires.
     """
     if self.action == 'list':
-        permission_classes = [IsAuthenticatedOrReadOnly]
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     else:
         permission_classes = [IsOwnerOrReadOnly]
     return [permission() for permission in permission_classes]
@@ -32,7 +34,13 @@ class FollowerViewSet(ModelViewSet):
   """
   queryset = Follower.objects.all()
   serializer_class = FollowerSerializer
-  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  
+  def get_permissions(self):
+    if self.action == 'list':
+        permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    else:
+        permission_classes = [IsOwnerOrReadOnly]
+    return [permission() for permission in permission_classes]
 
 
 class DependentViewSet(ModelViewSet):

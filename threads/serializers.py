@@ -66,10 +66,10 @@ class CommentSerializer(serializers.ModelSerializer):
     return request.user == obj.username
 
   def get_created_on(self, obj):
-    return naturaltime(obj.created_at)
+    return naturaltime(obj.created_on)
 
   def get_updated_on(self, obj):
-    return naturaltime(obj.updated_at)
+    return naturaltime(obj.updated_on)
   
   def get_like_id(self, obj):
     user = self.context['request'].user
