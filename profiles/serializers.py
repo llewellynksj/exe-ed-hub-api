@@ -59,6 +59,8 @@ class DependentSerializer(serializers.ModelSerializer):
   """
   Serializer to return JSON object of Dependent model
   """
+  school_name = serializers.ReadOnlyField(source='school.school_name')
+
   class Meta:
     model = Dependent
     fields = [
@@ -68,6 +70,7 @@ class DependentSerializer(serializers.ModelSerializer):
       'name',
       'age',
       'school',
+      'school_name',
     ]
   
   def create(self, validated_data):

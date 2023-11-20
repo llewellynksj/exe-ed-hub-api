@@ -30,7 +30,7 @@ class DependentViewSet(ModelViewSet):
   Single ViewSet that combines all operations for list and detail views
   """
   serializer_class = DependentSerializer
-  # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
   def get_queryset(self):
     """
@@ -42,6 +42,6 @@ class DependentViewSet(ModelViewSet):
 def get_serializer_context(self):
     """
     Provide the context for the serializer
-    Returns the School id
+    Returns the parent id
     """
     return {'parent_id': self.kwargs['profile_pk']}
