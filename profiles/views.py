@@ -1,6 +1,5 @@
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
-from rest_framework import status
 from .models import ParentProfile, Follower, Dependent
 from .serializers import ParentProfileSerializer, FollowerSerializer, DependentSerializer
 

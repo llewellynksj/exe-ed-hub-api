@@ -44,7 +44,7 @@ class PostSerializer(serializers.ModelSerializer):
       'category',
       'comments_count',
       'like_id',
-      'like_count',
+      'likes_count',
     ]
 
 
@@ -92,7 +92,7 @@ class CommentSerializer(serializers.ModelSerializer):
       'post',
       'comment',
       'like_id',
-      'like_count',
+      'likes_count',
     ]
 
 
