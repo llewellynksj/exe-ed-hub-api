@@ -2,6 +2,7 @@ from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .models import ParentProfile, Follower, Dependent
 from .serializers import ParentProfileSerializer, FollowerSerializer, DependentSerializer
+from exe_ed_hub_api.permissions import IsOwnerOrReadOnly
 
 
 class ParentProfileViewSet(ModelViewSet):
@@ -10,6 +11,16 @@ class ParentProfileViewSet(ModelViewSet):
   """
   queryset = ParentProfile.objects.all()
   serializer_class = ParentProfileSerializer
+  
+  def get_permissions(self):
+    """
+    Instantiates and returns the list of permissions that this view requires.
+    """
+    if self.action == 'list':
+        permission_classes = [IsAuthenticatedOrReadOnly]
+    else:
+        permission_classes = [IsOwnerOrReadOnly]
+    return [permission() for permission in permission_classes]
 
   # def get_serializer_context(self):
   #   return {'request': self.request}
@@ -38,7 +49,7 @@ class DependentViewSet(ModelViewSet):
     """
     return Dependent.objects.filter(parent_id=self.kwargs['profile_pk'])
 
-def get_serializer_context(self):
+  def get_serializer_context(self):
     """
     Provide the context for the serializer
     Returns the parent id
