@@ -46,8 +46,8 @@ class Like(models.Model):
   """
   created_on = models.DateTimeField(auto_now_add=True)
   username = models.ForeignKey(User, on_delete=models.CASCADE)
-  post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True)
-  comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True)
+  post = models.ForeignKey(Post, on_delete=models.CASCADE, null=True, blank=True)
+  comment = models.ForeignKey(Comment, on_delete=models.CASCADE, null=True, blank=True)
 
   class Meta:
     unique_together = (('username', 'post',), ('username', 'comment',))

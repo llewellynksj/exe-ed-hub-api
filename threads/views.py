@@ -10,11 +10,13 @@ class PostViewSet(ModelViewSet):
   """"""
   queryset = Post.objects.all()
   serializer_class = PostSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 class CommentViewSet(ModelViewSet):
   """"""
   queryset = Comment.objects.all()
   serializer_class = CommentSerializer
+  permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class LikeViewSet(ModelViewSet):
