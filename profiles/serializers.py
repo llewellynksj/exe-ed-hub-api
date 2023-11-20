@@ -28,33 +28,6 @@ class ParentProfileSerializer(serializers.ModelSerializer):
     ]
 
 
-class FollowerSerializer(serializers.ModelSerializer):
-  """
-  Serializer to return JSON object of Follower model
-  """
-  username = serializers.ReadOnlyField(source='username.username')
-  followed_name = serializers.ReadOnlyField(source='followed.username')
-
-  class Meta:
-      model = Follower
-      fields = [
-          'id',
-          'username',
-          'followed',
-          'followed_name',
-          'created_on',
-      ]
-
-  # Code from CI DRF-API walkthrough:
-  def create(self, validated_data):
-      try:
-          return super().create(validated_data)
-      except IntegrityError:
-          raise serializers.ValidationError({
-              'detail': 'duplicated follower'
-          })
-
-
 class DependentSerializer(serializers.ModelSerializer):
   """
   Serializer to return JSON object of Dependent model
@@ -81,3 +54,30 @@ class DependentSerializer(serializers.ModelSerializer):
     """
     parent_id = self.context['parent_id']
     return Dependent.objects.create(parent_id=parent_id, **validated_data)
+
+
+class FollowerSerializer(serializers.ModelSerializer):
+  """
+  Serializer to return JSON object of Follower model
+  """
+  username = serializers.ReadOnlyField(source='username.username')
+  followed_name = serializers.ReadOnlyField(source='followed.username')
+
+  class Meta:
+      model = Follower
+      fields = [
+          'id',
+          'username',
+          'followed',
+          'followed_name',
+          'created_on',
+      ]
+
+  # Code from CI DRF-API walkthrough:
+  def create(self, validated_data):
+      try:
+          return super().create(validated_data)
+      except IntegrityError:
+          raise serializers.ValidationError({
+              'detail': 'duplicated follower'
+          })
