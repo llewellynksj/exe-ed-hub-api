@@ -8,6 +8,7 @@ router = routers.DefaultRouter()
 router.register('profiles', views.ParentProfileViewSet)
 
 profiles_router = routers.NestedDefaultRouter(router, 'profiles', lookup='profile')
-profiles_router.register('followers', views.FollowerViewSet, basename='profile-followers')
+# profiles_router.register('followers', views.FollowerViewSet, basename='profile-followers')
+profiles_router.register('dependents', views.DependentViewSet, basename='profile-dependents')
 
 urlpatterns = router.urls + profiles_router.urls

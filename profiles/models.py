@@ -62,7 +62,7 @@ class Dependent(models.Model):
   """
   created_on = models.DateTimeField(auto_now_add=True)
   updated_on = models.DateTimeField(auto_now=True)
-  parent = models.ForeignKey(ParentProfile, on_delete=models.CASCADE)
+  parent = models.ForeignKey(ParentProfile, on_delete=models.CASCADE, related_name='dependents')
   name = models.CharField(max_length=100)
   age = models.SmallIntegerField()
   school = models.ForeignKey(School, on_delete=models.PROTECT)
