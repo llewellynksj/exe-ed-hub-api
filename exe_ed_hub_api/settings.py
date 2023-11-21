@@ -63,6 +63,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = {
     os.environ.get('ALLOWED_HOST'),
+    'exe-ed-hub-07f60c90d2ab.herokuapp.com',
     '8000-llewellynks-exeedhubapi-y2mtmrpcvq3.ws-eu106.gitpod.io',
     'localhost',
 }
