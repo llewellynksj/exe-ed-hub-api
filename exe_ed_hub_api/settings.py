@@ -63,7 +63,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = {
     os.environ.get('ALLOWED_HOST'),
-    # 'exe-ed-hub-07f60c90d2ab.herokuapp.com'
     '8000-llewellynks-exeedhubapi-y2mtmrpcvq3.ws-eu106.gitpod.io',
     'localhost',
 }
@@ -104,6 +103,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
     'profiles',
     'schools',
     'threads',
@@ -113,6 +113,7 @@ INSTALLED_APPS = [
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
