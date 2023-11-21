@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
@@ -12,7 +13,10 @@ class PostViewSet(ModelViewSet):
   """
   
   """
-  queryset = Post.objects.all()
+  queryset = Post.objects.annotate(
+    likes_count=Count('like', distinct=True),
+    comments_count=Count('comment', distinct=True)
+  ).order_by('-created_on')
   serializer_class = PostSerializer
   filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
   filterset_class = PostFilter

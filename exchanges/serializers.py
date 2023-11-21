@@ -18,3 +18,16 @@ class ItemSerializer(serializers.ModelSerializer):
       'image',
       'is_live',
     ]
+
+
+class ResponseSerializer(serializers.ModelSerializer):
+  class Meta:
+    model = Response
+    fields = [
+      'id',
+      'created_on',
+      'updated_on',
+      'username',
+      'item',
+      'comment',
+    ]

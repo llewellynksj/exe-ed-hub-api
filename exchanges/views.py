@@ -2,6 +2,7 @@ from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .models import Item, Response
 from .serializers import ItemSerializer, ResponseSerializer
+from exe_ed_hub_api.permissions import IsOwnerOrReadOnly
 
 
 class ItemViewSet(ModelViewSet):

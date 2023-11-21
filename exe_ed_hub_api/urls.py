@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('profiles.urls')),
     path('', include('schools.urls')),
     path('', include('threads.urls')),
+    path('', include('exchanges.urls')),
 ]

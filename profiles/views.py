@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework import permissions
 from rest_framework.viewsets import ModelViewSet
 from .models import ParentProfile, Follower, Dependent
@@ -9,7 +10,11 @@ class ParentProfileViewSet(ModelViewSet):
   """
   Single ViewSet that combines all operations for list and detail views
   """
-  queryset = ParentProfile.objects.all()
+  queryset = ParentProfile.objects.annotate(
+    posts_count=Count('username__post', distinct=True),
+    followers_count=Count('username__followed', distinct=True),
+    following_count=Count('username__following', distinct=True)
+  ).order_by('-created_on')
   serializer_class = ParentProfileSerializer
   
   # get_permissions function from DRF documentation:
