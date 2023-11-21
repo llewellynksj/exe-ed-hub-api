@@ -1,10 +1,20 @@
 # ExeEd Hub - API
 
-Summary of site
+ExeEd Hub is a platform for parents to find information and independent reviews of local schools, as well as an online community including discussion boards and an exchanges/forward-recycling forum. Users are able to create a profile, review schools, post and comment on threads, follow other users, and post items they want to find or want to offer to others as part of a forward-recycling initiative.
+
+This repository is the API that serves the live site.
+
+N.B. This is a fictional site populated with dummy data, as part of the final Portfolio Project submission for [Code Institue's]() Diploma in Full Stack Software Development.
+
+For more information please visit the [Front End Repository]()
+
+[Visit the live website here]()
+
+[Visit the live api site here]()
+
 
 ![Image of ]()
 
-[Visit the  live website here]()
 
 <br>
 
