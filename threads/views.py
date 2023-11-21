@@ -17,7 +17,7 @@ class PostViewSet(ModelViewSet):
   filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
   filterset_class = PostFilter
   search_fields = ['username', 'created_on', 'title', 'category',]
-  ordering_fields = ['created_on', 'likes_count', 'category',]
+  ordering_fields = ['created_on', 'category',]
 
   def get_permissions(self):
     """

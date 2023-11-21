@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .choices import CATEGORY
 
 
 class Post(models.Model):
@@ -12,7 +13,7 @@ class Post(models.Model):
   username = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
   title = models.CharField(max_length=255)
   content = models.TextField()
-  category = models.CharField(max_length=255)
+  category = models.CharField(max_length=255, choices=CATEGORY)
 
   class Meta:
     ordering = ['-created_on']
