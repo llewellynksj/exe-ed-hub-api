@@ -68,16 +68,12 @@ ALLOWED_HOSTS = {
     'localhost',
 }
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3030',
-    'https://exeedhub-239aa76fb295.herokuapp.com'
-]
-
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:3030',
+    'https://exeedhub-239aa76fb295.herokuapp.com',
 ]
-
-CORS_ALLOW_CREDENTIALS = True
 
 # Application definition
 
