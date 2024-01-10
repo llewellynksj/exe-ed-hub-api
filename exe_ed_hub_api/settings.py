@@ -72,7 +72,7 @@ CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGIN_REGEXES = [
     'http://localhost:3030',
-    'https://exeedhub-239aa76fb295.herokuapp.com',
+    'https://react-exeedhub-d8adac8b6bab.herokuapp.com',
 ]
 
 # Application definition
