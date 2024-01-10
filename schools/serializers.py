@@ -5,7 +5,7 @@ class SchoolSerializer(serializers.ModelSerializer):
   """
   Serializer to return JSON object of School Model
   """
-  school_name = serializers.ReadOnlyField(source='school.school_name')   
+  # school_name = serializers.ReadOnlyField(source='school.school_name')   
 
   class Meta:
     model = School
