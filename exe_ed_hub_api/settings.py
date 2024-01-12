@@ -60,13 +60,14 @@ REST_AUTH_SERIALIZERS = {
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEV' in os.environ
 
 ALLOWED_HOSTS = {
     os.environ.get('ALLOWED_HOST'),
     'exe-ed-hub-07f60c90d2ab.herokuapp.com',
     '8000-llewellynks-exeedhubapi-y2mtmrpcvq3.ws-eu106.gitpod.io',
     'localhost',
+    'localhost:3000',
 }
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -141,10 +142,12 @@ WSGI_APPLICATION = 'exe_ed_hub_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default': ({
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    } if 'DEV' in os.environ else dj_database_url.parse(
+        os.environ.get('DATABASE_URL')
+    ))
 }
 
 
